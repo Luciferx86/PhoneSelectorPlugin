@@ -25,23 +25,17 @@ class _MyAppState extends State<MyApp> {
     String phoneNumber;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      phoneNumber = await PhoneSelector.callPhoneSelector;
+      phoneNumber = await PhoneSelector.callPhoneSelector();
       print(phoneNumber);
     } on PlatformException {
       phoneNumber = 'Failed to get Phone Number.';
     }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
     if (mounted) {
       setState(() {
         _phoneNumber = phoneNumber;
       });
     }
   }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
 
   @override
   Widget build(BuildContext context) {
