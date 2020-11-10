@@ -1,3 +1,3 @@
-## 0.0.1
+## 1.0.0 - 2020-11-10
 
-* TODO: Describe initial release.
+* Added Integration to invoke Android PhoneSelector API to quickly select pre-installed phone numbers
