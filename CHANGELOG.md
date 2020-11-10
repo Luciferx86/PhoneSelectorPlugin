@@ -5,3 +5,7 @@
 ## 1.0.1 - 2020-11-10
 
 * Added Readme
+
+## 1.0.2 - 2020-11-10
+
+* Changed Readme
