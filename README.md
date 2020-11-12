@@ -18,7 +18,7 @@ Add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-    phone_selector: ^1.0.2
+    phone_selector: ^1.0.3
 ```
 
 ## How to Use
