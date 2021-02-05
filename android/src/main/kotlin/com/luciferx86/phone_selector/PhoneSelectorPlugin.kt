@@ -37,7 +37,7 @@ class PhoneSelectorPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plu
 
 	override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
 		channel = MethodChannel(flutterPluginBinding.binaryMessenger, "phone_selector")
-		channel.setMethodCallHandler(this)
+		channel!!.setMethodCallHandler(this)
 	}
 
 	override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
