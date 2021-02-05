@@ -20,6 +20,7 @@ import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
+import io.flutter.plugin.common.EventChannel
 
 
 /** PhoneSelectorPlugin */
@@ -32,6 +33,7 @@ class PhoneSelectorPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plu
 	private val CREDENTIAL_PICKER_REQUEST = 120
 	private var activity: Activity? = null
 	var result: Result? = null
+	private var eventSink: EventChannel.EventSink? = null
 
 	override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
 		channel = MethodChannel(flutterPluginBinding.binaryMessenger, "phone_selector")
@@ -64,11 +66,11 @@ class PhoneSelectorPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plu
 	}
 
 	override fun onDetachedFromActivity() {
-		activity = null;
+		cleanUp()
 	}
 
 	override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
-		channel.setMethodCallHandler(null)
+		cleanUp()
 	}
 
 
@@ -97,5 +99,13 @@ class PhoneSelectorPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plu
 			this.result?.error("CREDENTIAL_PICKER_REQUEST", null, null)
 		}
 		return false
+	}
+
+	private fun cleanUp() {
+		activity = null
+		channel?.setMethodCallHandler(null)
+		channel = null
+		eventSink = null
+		result = null;
 	}
 }
