@@ -29,7 +29,7 @@ class PhoneSelectorPlugin : FlutterPlugin, MethodCallHandler, ActivityAware, Plu
 	///
 	/// This local reference serves to register the plugin with the Flutter Engine and unregister it
 	/// when the Flutter Engine is detached from the Activity
-	private lateinit var channel: MethodChannel
+	private var channel: MethodChannel?=null
 	private val CREDENTIAL_PICKER_REQUEST = 120
 	private var activity: Activity? = null
 	var result: Result? = null
