@@ -1,8 +1,6 @@
 # phone_selector
 
-A flutter plugin to invoke the PhoneSelector API for Android
-
-#### A Flutter Widget to make interactive Progress Timeline.
+### A flutter plugin to invoke the PhoneSelector API for Android
 
 This Library can be used to invoke the Phone selector API on Android Devices.
 
