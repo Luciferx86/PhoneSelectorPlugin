@@ -148,8 +148,8 @@ public class PhoneSelectorPlugin implements MethodChannel.MethodCallHandler, Flu
         }
 
         final MethodChannel.Result result = new MethodResultWrapper(rawResult);
-        if (call.method == "callPhoneSelector") {
-            this.delegate.requestHint();
+        if (call.method.equals("callPhoneSelector")) {
+            this.delegate.requestHint(result);
         } else {
             throw new IllegalArgumentException("Unknown method " + call.method);
         }
@@ -239,7 +239,7 @@ public class PhoneSelectorPlugin implements MethodChannel.MethodCallHandler, Flu
     private void tearDown() {
         this.activityBinding.removeActivityResultListener(this.delegate);
         this.activityBinding = null;
-        if(this.observer != null) {
+        if (this.observer != null) {
             this.lifecycle.removeObserver((LifecycleObserver) this.observer);
             this.application.unregisterActivityLifecycleCallbacks(this.observer);
         }

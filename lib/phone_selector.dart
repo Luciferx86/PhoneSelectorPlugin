@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 
 class PhoneSelector {
   /// MethodChannel to invoke native methods.
-  static const MethodChannel _channel = const MethodChannel('phone_selector');
+  static const MethodChannel _channel = const MethodChannel('luciferx86.flutter.plugins.phoneselector');
 
   /// Method used to call the Phone Selector API in Android
   static Future<String> callPhoneSelector() async {

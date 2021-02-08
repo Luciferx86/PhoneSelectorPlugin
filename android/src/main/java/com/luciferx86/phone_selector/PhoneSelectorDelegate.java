@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 
 import androidx.annotation.VisibleForTesting;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.auth.api.credentials.Credential;
 import com.google.android.gms.auth.api.credentials.Credentials;
@@ -24,7 +25,6 @@ import io.flutter.plugin.common.PluginRegistry;
 
 public class PhoneSelectorDelegate implements PluginRegistry.ActivityResultListener {
     private static final String TAG = "PhoneSelectorDelegate";
-    private static final int REQUEST_CODE = (PhoneSelectorPlugin.class.hashCode() + 43) & 0x0000ffff;
     private static final int CREDENTIAL_PICKER_REQUEST = 120;
 
     private final Activity activity;
@@ -51,7 +51,7 @@ public class PhoneSelectorDelegate implements PluginRegistry.ActivityResultListe
     @Override
     public boolean onActivityResult(final int requestCode, final int resultCode, final Intent data) {
 
-        if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+        if (requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == Activity.RESULT_OK) {
             Credential credentials = data.getParcelableExtra(Credential.EXTRA_KEY);
             finishWithSuccess(credentials.getId().substring(3));
         } else if (requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == CredentialsApi.ACTIVITY_RESULT_NO_HINTS_AVAILABLE) {
@@ -61,6 +61,10 @@ public class PhoneSelectorDelegate implements PluginRegistry.ActivityResultListe
         } else if (requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == 0) {
             finishWithSuccess("");
         }
+        else if (requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == CredentialsApi.ACTIVITY_RESULT_OTHER_ACCOUNT) {
+            finishWithError("none_of_the_above","User Selected None of the above");
+        }
+
         return false;
     }
 
@@ -76,14 +80,33 @@ public class PhoneSelectorDelegate implements PluginRegistry.ActivityResultListe
         }
     }
 
-    public void requestHint() {
+    private boolean setPendingMethodCallAndResult(final MethodChannel.Result result) {
+        if (this.pendingResult != null) {
+            return false;
+        }
+        this.pendingResult = result;
+        return true;
+    }
+
+    private static void finishWithAlreadyActiveError(final MethodChannel.Result result) {
+        result.error("already_active", "Phone Selector is already active", null);
+    }
+
+    public void requestHint(MethodChannel.Result result) {
+        if (!this.setPendingMethodCallAndResult(result)) {
+            finishWithAlreadyActiveError(result);
+            return;
+        }
         HintRequest hintRequest = new HintRequest.Builder()
                 .setPhoneNumberIdentifierSupported(true)
                 .build();
         PendingIntent intent = Credentials.getClient(this.activity).getHintPickerIntent(hintRequest);
         try {
-            this.activity.startIntentSenderForResult(intent.getIntentSender(), CREDENTIAL_PICKER_REQUEST, this.activity.getIntent(), 0, 0, 0, new Bundle());
+            ActivityCompat.startIntentSenderForResult(this.activity, intent.getIntentSender(), CREDENTIAL_PICKER_REQUEST, null,0, 0, 0, new Bundle());
         } catch (IntentSender.SendIntentException e) {
+            e.printStackTrace();
+        }
+        catch(Exception e){
             e.printStackTrace();
         }
     }
