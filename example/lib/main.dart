@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:phone_selector/phone_selector.dart';
 
 void main() {
@@ -25,7 +24,8 @@ class _MyAppState extends State<MyApp> {
     try {
       phoneNumber = await PhoneSelector.callPhoneSelector();
       print(phoneNumber);
-    } on PlatformException {
+    } catch(e){
+      print(e);
       phoneNumber = 'Failed to get Phone Number.';
     }
     if (mounted) {
