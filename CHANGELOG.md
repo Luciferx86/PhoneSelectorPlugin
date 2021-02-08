@@ -25,3 +25,7 @@
 ## 2.0.1 - 2021-02-08
 
 * Fixed the Bug "java.lang.IllegalStateException: Reply already submitted"
+
+## 2.0.2 - 2021-02-08
+
+* Fixed the Bug "java.lang.IllegalStateException: Reply already submitted"
