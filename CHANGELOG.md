@@ -33,3 +33,7 @@
 ## 2.0.3 - 2021-02-08
 
 * Fixed the Bug "java.lang.IllegalStateException: Reply already submitted"
+
+## 2.0.4 - 2021-02-28
+
+* Update method name, and readme file

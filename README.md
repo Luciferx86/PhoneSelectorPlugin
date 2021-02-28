@@ -2,6 +2,9 @@
 
 ### A flutter plugin to invoke the PhoneSelector API for Android
 
+ ![pub package](https://img.shields.io/pub/v/phone_selector.svg)  ![pub points](https://badges.bar/phone_selector/pub%20points)  ![popularity](https://badges.bar/phone_selector/popularity) ![Issues](https://img.shields.io/github/issues/Luciferx86/PhoneSelectorPlugin)  ![Stars](https://img.shields.io/github/stars/Luciferx86/PhoneSelectorPlugin) ![License](https://img.shields.io/github/license/Luciferx86/PhoneSelectorPlugin) 
+
+
 This Library can be used to invoke the Phone selector API on Android Devices.
 
 This library does not support IOS.
@@ -16,7 +19,7 @@ Add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-    phone_selector: ^2.0.3
+    phone_selector: ^2.0.4
 ```
 
 ## How to Use
@@ -35,7 +38,7 @@ _getPhoneNumber() async {
     String phoneNumber;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      phoneNumber = await PhoneSelector.callPhoneSelector();
+      phoneNumber = await PhoneSelector.getPhoneNumber();
       print(phoneNumber);
     } on PlatformException {
       print('Failed to get Phone Number.');

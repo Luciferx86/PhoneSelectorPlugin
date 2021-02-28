@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
     String phoneNumber;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      phoneNumber = await PhoneSelector.callPhoneSelector();
+      phoneNumber = await PhoneSelector.getPhoneNumber();
       print(phoneNumber);
     } catch(e){
       print(e);
