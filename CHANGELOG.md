@@ -37,3 +37,7 @@
 ## 2.0.4 - 2021-02-28
 
 * Update method name, and readme file
+
+## 2.0.5 - 2021-03-03
+
+* Added screesnhot to readme

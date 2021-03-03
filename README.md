@@ -9,7 +9,7 @@ This Library can be used to invoke the Phone selector API on Android Devices.
 
 This library does not support IOS.
 
-![](demo.gif)
+![Screenshot](screenshot.png)
 
 ## Installation
 
@@ -19,7 +19,7 @@ Add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-    phone_selector: ^2.0.4
+    phone_selector: ^2.0.5
 ```
 
 ## How to Use
@@ -29,7 +29,7 @@ Import the library
 import 'package:phone_selector/phone_selector.dart';
 ```
 
-Call the `callPhoneSelector` method of `PhoneSelector` class.
+Call the `getPhoneNumber` method of `PhoneSelector` class.
 
 ```dart
 .

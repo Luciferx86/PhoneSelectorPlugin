@@ -1,6 +1,6 @@
 name: phone_selector
 description: A flutter plugin to invoke the PhoneSelector API for Android
-version: 2.0.4
+version: 2.0.5
 author: Akshay Arora<akshayarora.10.6.97@gmail.com>
 homepage: https://github.com/Luciferx86/PhoneSelectorPlugin
 
