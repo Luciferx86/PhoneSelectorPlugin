@@ -46,3 +46,7 @@
 
 * Added screesnhot to readme
 
+## 2.0.7 - 2021-03-03
+
+* Added screesnhot to readme
+

@@ -9,7 +9,7 @@ This Library can be used to invoke the Phone selector API on Android Devices.
 
 This library does not support IOS.
 
-![Screenshot](screenshot.png)
+<img src="https://raw.githubusercontent.com/Luciferx86/PhoneSelectorPlugin/main/screenshot.png"/>
 
 ## Installation
 
@@ -19,7 +19,7 @@ Add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-    phone_selector: ^2.0.6
+    phone_selector: ^2.0.7
 ```
 
 ## How to Use
