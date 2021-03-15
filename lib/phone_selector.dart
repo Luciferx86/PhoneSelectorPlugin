@@ -8,8 +8,8 @@ class PhoneSelector {
       const MethodChannel('luciferx86.flutter.plugins.phoneselector');
 
   /// Method used to call the Phone Selector API in Android
-  static Future<String> getPhoneNumber() async {
-    final String version = await _channel.invokeMethod('callPhoneSelector');
+  static Future<String?> getPhoneNumber() async {
+    final String? version = await _channel.invokeMethod('callPhoneSelector');
     return version;
   }
 }

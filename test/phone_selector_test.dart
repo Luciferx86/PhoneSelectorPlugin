@@ -18,6 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await PhoneSelector.callPhoneSelector, '42');
+    expect(PhoneSelector.getPhoneNumber, '42');
   });
 }

@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> {
               SizedBox(
                 height: 40,
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   _getPhoneNumber();
                 },

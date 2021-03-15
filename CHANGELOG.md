@@ -1,28 +1,24 @@
-## 1.0.0 - 2020-11-10
+## 3.0.0
 
-* Added Integration to invoke Android PhoneSelector API to quickly select pre-installed phone numbers
+* Migrated to Null Safety
 
-## 1.0.1 - 2020-11-10
+## 2.0.7 - 2021-03-03
 
-* Added Readme
+* Added screenshot to readme
 
-## 1.0.2 - 2020-11-10
+## 2.0.6 - 2021-03-03
 
-* Changed Readme
+* Added screenshot to readme
 
-## 1.0.3 - 2020-11-12
+## 2.0.5 - 2021-03-03
 
-* Changed Readme
+* Added screesnhot to readme
 
-## 1.0.4 - 2020-11-12
+## 2.0.4 - 2021-02-28
 
-* Changed Readme
+* Update method name, and readme file
 
-## 1.0.5 - 2021-02-05
-
-* Fixed the Bug "java.lang.IllegalStateException: Reply already submitted"
-
-## 2.0.1 - 2021-02-08
+## 2.0.3 - 2021-02-08
 
 * Fixed the Bug "java.lang.IllegalStateException: Reply already submitted"
 
@@ -30,23 +26,44 @@
 
 * Fixed the Bug "java.lang.IllegalStateException: Reply already submitted"
 
-## 2.0.3 - 2021-02-08
+## 2.0.1 - 2021-02-08
 
 * Fixed the Bug "java.lang.IllegalStateException: Reply already submitted"
 
-## 2.0.4 - 2021-02-28
+## 1.0.5 - 2021-02-05
 
-* Update method name, and readme file
+* Fixed the Bug "java.lang.IllegalStateException: Reply already submitted"
 
-## 2.0.5 - 2021-03-03
+## 1.0.4 - 2020-11-12
 
-* Added screesnhot to readme
+* Changed Readme
 
-## 2.0.6 - 2021-03-03
+## 1.0.3 - 2020-11-12
 
-* Added screesnhot to readme
+* Changed Readme
 
-## 2.0.7 - 2021-03-03
+## 1.0.2 - 2020-11-10
 
-* Added screesnhot to readme
+* Changed Readme
+
+## 1.0.1 - 2020-11-10
+
+* Added Readme
+
+## 1.0.0 - 2020-11-10
+
+* Added Integration to invoke Android PhoneSelector API to quickly select pre-installed phone numbers
+
+
+
+
+
+
+
+
+
+
+
+
+
 
