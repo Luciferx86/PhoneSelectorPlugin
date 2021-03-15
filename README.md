@@ -19,7 +19,8 @@ Add the following to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-    phone_selector: ^3.0.0
+    phone_selector: ^3.0.0 //if you want to use the null safety version
+    phone_selector: ^2.0.7 //if you don't want to use the null safety version
 ```
 
 ## How to Use
