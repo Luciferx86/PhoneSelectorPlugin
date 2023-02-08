@@ -101,6 +101,7 @@ public class PhoneSelectorDelegate implements PluginRegistry.ActivityResultListe
                 .setPhoneNumberIdentifierSupported(true)
                 .build();
         PendingIntent intent = Credentials.getClient(this.activity).getHintPickerIntent(hintRequest);
+        intent.setFlags(PendingIntent.FLAG_IMMUTABLE);
         try {
             ActivityCompat.startIntentSenderForResult(this.activity, intent.getIntentSender(), CREDENTIAL_PICKER_REQUEST, null,0, 0, 0, new Bundle());
         } catch (IntentSender.SendIntentException e) {
