@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 
 import androidx.activity.ComponentActivity;
+import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -17,6 +18,7 @@ import com.google.android.gms.auth.api.credentials.Credential;
 import com.google.android.gms.auth.api.credentials.Credentials;
 import com.google.android.gms.auth.api.credentials.CredentialsApi;
 import com.google.android.gms.auth.api.credentials.HintRequest;
+import com.google.android.gms.auth.api.identity.GetPhoneNumberHintIntentRequest;
 import com.google.android.gms.auth.api.identity.Identity;
 
 import android.os.Bundle;
@@ -29,7 +31,7 @@ import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.EventChannel;
 import io.flutter.plugin.common.PluginRegistry;
 
-public class PhoneSelectorDelegate extends ComponentActivity implements PluginRegistry.ActivityResultListener {
+public class PhoneSelectorDelegate extends ComponentActivity  {
     private static final String TAG = "PhoneSelectorDelegate";
     private static final int CREDENTIAL_PICKER_REQUEST = 120;
 
@@ -54,25 +56,7 @@ public class PhoneSelectorDelegate extends ComponentActivity implements PluginRe
         this.pendingResult = result;
     }
 
-    @Override
-    public boolean onActivityResult(final int requestCode, final int resultCode, final Intent data) {
 
-//        if (requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == Activity.RESULT_OK) {
-//            Credential credentials = data.getParcelableExtra(Credential.EXTRA_KEY);
-//            finishWithSuccess(credentials.getId().substring(3));
-//        } else if (requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == CredentialsApi.ACTIVITY_RESULT_NO_HINTS_AVAILABLE) {
-//            Log.i(TAG, "User cancelled the picker request");
-//            finishWithError("np_numbers", "No Numbers found");
-//            return true;
-//        } else if (requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == 0) {
-//            finishWithSuccess("");
-//        }
-//        else if (requestCode == CREDENTIAL_PICKER_REQUEST && resultCode == CredentialsApi.ACTIVITY_RESULT_OTHER_ACCOUNT) {
-//            finishWithError("none_of_the_above","User Selected None of the above");
-//        }
-//
-        return false;
-    }
 
     private void finishWithSuccess(String data) {
         if (eventSink != null) {
@@ -98,7 +82,8 @@ public class PhoneSelectorDelegate extends ComponentActivity implements PluginRe
         result.error("already_active", "Phone Selector is already active", null);
     }
 
-    public void requestHint(MethodChannel.Result result) {
+    public void requestHint(MethodChannel.Result result1) {
+        GetPhoneNumberHintIntentRequest request = GetPhoneNumberHintIntentRequest.builder().build();
 //        if (!this.setPendingMethodCallAndResult(result)) {
 //            finishWithAlreadyActiveError(result);
 //            return;
@@ -130,6 +115,22 @@ public class PhoneSelectorDelegate extends ComponentActivity implements PluginRe
                              }
                             }
                         });
+
+        Identity.getSignInClient(activity)
+                .getPhoneNumberHintIntent(request)
+                .addOnSuccessListener( result -> {
+                    try {
+                        phoneNumberHintIntentResultLauncher.launch(result.getIntentSender());
+                    } catch(Exception e) {
+                        Log.e(TAG, "Launching the PendingIntent failed", e);
+
+                        finishWithError("2", e.getMessage());
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.e(TAG, "Phone Number Hint failed", e);
+                    finishWithError("3", e.getMessage());
+                });
     }
 
     private void finishWithError(final String errorCode, final String errorMessage) {
